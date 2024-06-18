@@ -1,7 +1,8 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ConfigService } from '@nestjs/config';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiResponseDto, UserRequestDto } from './dto/ai_routine.dto';
 
 @Controller()
 export class AppController {
@@ -18,5 +19,20 @@ export class AppController {
   @Get('version')
   versionCheck() {
     return this.configService.get('VERSION');
+  }
+
+  @ApiOperation({summary: '안내를 위한 swagger입니다. ', description: 'https://a43pwwzgih.execute-api.ap-northeast-2.amazonaws.com/default/AIRoutine'})
+  @ApiBody({
+    description: 'User info request data',
+    type: UserRequestDto
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Successful response with workout routine',
+    type: ApiResponseDto,
+  })
+  @Post('AI ROUTINE')
+  async adsf(){
+    
   }
 }

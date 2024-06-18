@@ -21,7 +21,7 @@ import { GoogleStrategy } from './strategies/google.strategy';
       useFactory: (configService: ConfigService) => {
         return {
           secret: configService.get('SECRET_KEY'),
-          signOptions: {expiresIn: '5m'},
+          signOptions: {expiresIn: '1w'},
         };
       },
       inject: [ConfigService],
